@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using BorrowIt.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configure database connection and register database context
+builder.Services.AddDbContext<BorrowItContext> (options => options.UseMySql(builder.Configuration.GetConnectionString("BorrowItConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("BorrowItConnection"))));
 
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
