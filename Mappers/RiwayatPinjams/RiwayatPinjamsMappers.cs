@@ -19,7 +19,8 @@ public static class RiwayatPinjamsMappers
             TanggalPinjam = riwayatPinjam.TanggalPinjam.ToString("dd-MM-yyyy, HH:mm"),
             TanggalKembali = riwayatPinjam.TanggalKembali.ToString("dd-MM-yyyy, HH:mm"),
             TujuanPinjam = riwayatPinjam.TujuanPinjam,
-            Status = riwayatPinjam.Status
+            Status = riwayatPinjam.Status,
+            WhenStatusChanged = riwayatPinjam.WhenStatusChanged?.ToString("dd-MM-yyyy, HH:mm")
         };
     }
 
@@ -43,6 +44,10 @@ public static class RiwayatPinjamsMappers
         riwayatPinjam.TanggalPinjam = dto.TanggalPinjam ?? riwayatPinjam.TanggalPinjam;
         riwayatPinjam.TanggalKembali = dto.TanggalKembali ?? riwayatPinjam.TanggalKembali;
         riwayatPinjam.TujuanPinjam = !string.IsNullOrWhiteSpace(dto.TujuanPinjam) ? dto.TujuanPinjam : riwayatPinjam.TujuanPinjam;
+    }
+
+    public static void MapStatusUpdate(this RiwayatPinjam riwayatPinjam, RiwayatStatusDto dto)
+    {
         riwayatPinjam.Status = !string.IsNullOrWhiteSpace(dto.Status) ? dto.Status : riwayatPinjam.Status;
     }
 }

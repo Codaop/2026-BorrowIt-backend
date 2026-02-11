@@ -7,5 +7,4 @@ public class RiwayatUpdateDto
     public DateTime? TanggalPinjam { get; set; }
     public DateTime? TanggalKembali { get; set; }
     public string? TujuanPinjam { get; set; }
-    public string? Status { get; set; }
 }
