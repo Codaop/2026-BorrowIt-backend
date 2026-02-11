@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
+using Microsoft.Identity.Client;
 
 namespace BorrowIt.Models;
 
@@ -26,5 +28,6 @@ public class RiwayatPinjam
     [Required]
     public required string TujuanPinjam { get; set; }
     public string? Status { get; set; } = "Pending"; // pending, approved, rejected
+    public DateTime? WhenStatusChanged { get; set; }
     public bool IsDeleted { get; set; } = false; // true = dihapus, false = tidak dihapus
 }
