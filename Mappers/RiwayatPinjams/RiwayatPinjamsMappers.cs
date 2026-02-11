@@ -48,6 +48,5 @@ public static class RiwayatPinjamsMappers
     public static void MapStatusUpdate(this RiwayatPinjam riwayatPinjam, RiwayatStatusDto dto)
     {
         riwayatPinjam.Status = !string.IsNullOrWhiteSpace(dto.Status) ? dto.Status : riwayatPinjam.Status;
-        riwayatPinjam.WhenStatusChanged = dto.WhenStatusChanged ?? riwayatPinjam.WhenStatusChanged;
     }
 }
