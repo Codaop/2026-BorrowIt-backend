@@ -73,7 +73,7 @@ namespace Controller.Migrations
                         {
                             Id = 1,
                             Email = "syauqy@it.student.pens.ac.id",
-                            IdRuangan = 4,
+                            IdRuangan = 2,
                             IsDeleted = false,
                             NamaPeminjam = "Syauqy Arrayyan",
                             Status = "Pending",
@@ -86,7 +86,7 @@ namespace Controller.Migrations
                         {
                             Id = 2,
                             Email = "nabila@it.student.pens.ac.id",
-                            IdRuangan = 1,
+                            IdRuangan = 3,
                             IsDeleted = false,
                             NamaPeminjam = "Nabila Azzahra",
                             Status = "Pending",
@@ -99,7 +99,7 @@ namespace Controller.Migrations
                         {
                             Id = 3,
                             Email = "yayan@it.student.pens.ac.id",
-                            IdRuangan = 3,
+                            IdRuangan = 4,
                             IsDeleted = false,
                             NamaPeminjam = "Yayan Maulana",
                             Status = "Pending",
@@ -143,7 +143,7 @@ namespace Controller.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 9, 16, 13, 1, 770, DateTimeKind.Utc).AddTicks(9988),
+                            CreatedAt = new DateTime(2026, 2, 11, 5, 26, 30, 854, DateTimeKind.Utc).AddTicks(358),
                             IsTersedia = true,
                             JenisRuangan = "Laboratorium Praktek",
                             Kapasitas = 30,
@@ -152,7 +152,7 @@ namespace Controller.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 2, 9, 16, 13, 1, 771, DateTimeKind.Utc).AddTicks(892),
+                            CreatedAt = new DateTime(2026, 2, 11, 5, 26, 30, 854, DateTimeKind.Utc).AddTicks(1481),
                             IsTersedia = true,
                             JenisRuangan = "Kelas Besar",
                             Kapasitas = 140,
@@ -161,7 +161,7 @@ namespace Controller.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 2, 9, 16, 13, 1, 771, DateTimeKind.Utc).AddTicks(893),
+                            CreatedAt = new DateTime(2026, 2, 11, 5, 26, 30, 854, DateTimeKind.Utc).AddTicks(1483),
                             IsTersedia = true,
                             JenisRuangan = "Kelas Reguler",
                             Kapasitas = 40,
@@ -170,7 +170,7 @@ namespace Controller.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 2, 9, 16, 13, 1, 771, DateTimeKind.Utc).AddTicks(894),
+                            CreatedAt = new DateTime(2026, 2, 11, 5, 26, 30, 854, DateTimeKind.Utc).AddTicks(1484),
                             IsTersedia = true,
                             JenisRuangan = "Kelas Reguler",
                             Kapasitas = 60,
@@ -212,9 +212,9 @@ namespace Controller.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 9, 16, 13, 1, 772, DateTimeKind.Utc).AddTicks(5081),
+                            CreatedAt = new DateTime(2026, 2, 11, 5, 26, 30, 855, DateTimeKind.Utc).AddTicks(3620),
                             Email = "admin@example.com",
-                            PasswordHash = "AdminPasswordHash",
+                            PasswordHash = "$2a$11$mo3gmTqO1MrItcFj.DM0C.VvNy6gH4Mmq4Oh4gf3OeAaBIF2/px9y",
                             Username = "Admin"
                         });
                 });

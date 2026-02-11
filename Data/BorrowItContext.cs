@@ -15,8 +15,9 @@ public class BorrowItContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<RiwayatPinjam>().HasQueryFilter(r => !r.IsDeleted);
         modelBuilder.SeedRuangan();
-        modelBuilder.SeedRiwayat();
         modelBuilder.SeedUser();
+        modelBuilder.SeedRiwayat();
     }
 }
