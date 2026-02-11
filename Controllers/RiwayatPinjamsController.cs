@@ -9,6 +9,7 @@ using BorrowIt.Data;
 using BorrowIt.Models;
 using BorrowIt.Dtos.RiwayatPinjams;
 using BorrowIt.Mappers.RiwayatPinjams;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Controller.Controllers
 {
@@ -58,6 +59,42 @@ namespace Controller.Controllers
             }
 
             existingRiwayat.RequestRiwayatUpdateDto(dto);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!RiwayatPinjamExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+
+        // PUT: api/RiwayatPinjams/5/status-update
+        // For status update logic, admin only
+        [Authorize(Roles = "Admin")]
+        [HttpPut("{id}/status-update")]
+        public async Task<IActionResult> PutStatusRiwayatPinjam(int id, RiwayatStatusDto dto)
+        {
+            var existingRiwayat = await _context.RiwayatPinjams.FindAsync(id);
+
+            if (existingRiwayat == null)
+            {
+                return BadRequest("Riwayat tidak ditemukan.");
+            }
+
+            existingRiwayat.MapStatusUpdate(dto);
+            existingRiwayat.WhenStatusChanged = DateTime.UtcNow;
 
             try
             {
