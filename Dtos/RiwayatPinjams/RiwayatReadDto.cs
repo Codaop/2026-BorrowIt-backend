@@ -10,4 +10,5 @@ public class RiwayatReadDto
     public required string TanggalKembali { get; set; }
     public required string TujuanPinjam { get; set; }
     public string? Status { get; set; }
+    public DateTime? WhenStatusChanged { get; set; }
 }

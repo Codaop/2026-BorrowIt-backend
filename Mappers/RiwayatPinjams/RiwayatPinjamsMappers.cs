@@ -19,7 +19,8 @@ public static class RiwayatPinjamsMappers
             TanggalPinjam = riwayatPinjam.TanggalPinjam.ToString("dd-MM-yyyy, HH:mm"),
             TanggalKembali = riwayatPinjam.TanggalKembali.ToString("dd-MM-yyyy, HH:mm"),
             TujuanPinjam = riwayatPinjam.TujuanPinjam,
-            Status = riwayatPinjam.Status
+            Status = riwayatPinjam.Status,
+            WhenStatusChanged = riwayatPinjam.WhenStatusChanged
         };
     }
 
