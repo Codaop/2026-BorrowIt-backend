@@ -14,14 +14,14 @@ builder.Services.AddOpenApi();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-    app.UseSwaggerUi(options =>
-    {
-        options.DocumentPath = "/openapi/v1.json";
-    });
-}
+// if (app.Environment.IsDevelopment())
+// {
+//     app.MapOpenApi();
+//     app.UseSwaggerUi(options =>
+//     {
+//         options.DocumentPath = "/openapi/v1.json";
+//     });
+// }
 
 app.UseHttpsRedirection();
 

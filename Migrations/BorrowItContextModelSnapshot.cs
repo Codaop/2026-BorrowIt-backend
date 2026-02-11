@@ -67,6 +67,47 @@ namespace Controller.Migrations
                     b.HasIndex("IdRuangan");
 
                     b.ToTable("RiwayatPinjams");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "syauqy@it.student.pens.ac.id",
+                            IdRuangan = 2,
+                            IsDeleted = false,
+                            NamaPeminjam = "Syauqy Arrayyan",
+                            Status = "Pending",
+                            TanggalKembali = new DateTime(2024, 7, 1, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrackingToken = "",
+                            TujuanPinjam = "Kegiatan welcome party anggota baru ENT 2026."
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "nabila@it.student.pens.ac.id",
+                            IdRuangan = 3,
+                            IsDeleted = false,
+                            NamaPeminjam = "Nabila Azzahra",
+                            Status = "Pending",
+                            TanggalKembali = new DateTime(2024, 7, 1, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrackingToken = "",
+                            TujuanPinjam = "Forum komunal mahasiswa teknik elektro."
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "yayan@it.student.pens.ac.id",
+                            IdRuangan = 4,
+                            IsDeleted = false,
+                            NamaPeminjam = "Yayan Maulana",
+                            Status = "Pending",
+                            TanggalKembali = new DateTime(2024, 7, 1, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            TrackingToken = "",
+                            TujuanPinjam = "Rapat kerja kelompok praktikum Rangkaian Listrik."
+                        });
                 });
 
             modelBuilder.Entity("BorrowIt.Models.Ruangan", b =>
@@ -97,6 +138,44 @@ namespace Controller.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ruangans");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 2, 11, 5, 26, 30, 854, DateTimeKind.Utc).AddTicks(358),
+                            IsTersedia = true,
+                            JenisRuangan = "Laboratorium Praktek",
+                            Kapasitas = 30,
+                            NamaRuangan = "B302"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 2, 11, 5, 26, 30, 854, DateTimeKind.Utc).AddTicks(1481),
+                            IsTersedia = true,
+                            JenisRuangan = "Kelas Besar",
+                            Kapasitas = 140,
+                            NamaRuangan = "SAW 10.08"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 2, 11, 5, 26, 30, 854, DateTimeKind.Utc).AddTicks(1483),
+                            IsTersedia = true,
+                            JenisRuangan = "Kelas Reguler",
+                            Kapasitas = 40,
+                            NamaRuangan = "A302"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 2, 11, 5, 26, 30, 854, DateTimeKind.Utc).AddTicks(1484),
+                            IsTersedia = true,
+                            JenisRuangan = "Kelas Reguler",
+                            Kapasitas = 60,
+                            NamaRuangan = "A303"
+                        });
                 });
 
             modelBuilder.Entity("BorrowIt.Models.User", b =>
@@ -128,6 +207,16 @@ namespace Controller.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 2, 11, 5, 26, 30, 855, DateTimeKind.Utc).AddTicks(3620),
+                            Email = "admin@example.com",
+                            PasswordHash = "$2a$11$mo3gmTqO1MrItcFj.DM0C.VvNy6gH4Mmq4Oh4gf3OeAaBIF2/px9y",
+                            Username = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("BorrowIt.Models.RiwayatPinjam", b =>

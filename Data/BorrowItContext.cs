@@ -8,7 +8,15 @@ public class BorrowItContext : DbContext
     public BorrowItContext(DbContextOptions<BorrowItContext> options) : base(options)
     {
     }
-    DbSet<Ruangan> Ruangans { get; set; } = null!;
-    DbSet<RiwayatPinjam> RiwayatPinjams { get; set; } = null!;
-    DbSet<User> Users { get; set; } = null!;
+    public DbSet<Ruangan> Ruangans { get; set; } = null!;
+    public DbSet<RiwayatPinjam> RiwayatPinjams { get; set; } = null!;
+    public DbSet<User> Users { get; set; } = null!;
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.SeedRuangan();
+        modelBuilder.SeedUser();
+        modelBuilder.SeedRiwayat();
+    }
 }
