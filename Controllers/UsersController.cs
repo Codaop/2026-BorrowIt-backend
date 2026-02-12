@@ -119,7 +119,7 @@ namespace Controller.Controllers
             return NoContent();
         }
 
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}/update-roles")]
         public async Task<IActionResult> PutUserUpdateRoles(int id, UserUpdateRolesDto dto)
         {
@@ -171,7 +171,7 @@ namespace Controller.Controllers
         }
 
         // DELETE: api/Users/5
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
