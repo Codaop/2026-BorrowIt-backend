@@ -94,7 +94,7 @@ namespace Controller.Controllers
             }
 
             existingRiwayat.MapStatusUpdate(dto);
-            existingRiwayat.WhenStatusChanged = DateTime.UtcNow;
+            existingRiwayat.WhenStatusChanged = DateTime.UtcNow.AddHours(7);
 
             try
             {
