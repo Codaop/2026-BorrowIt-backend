@@ -10,6 +10,7 @@ using BorrowIt.Models;
 using BorrowIt.Dtos.RiwayatPinjams;
 using BorrowIt.Mappers.RiwayatPinjams;
 using Microsoft.AspNetCore.Authorization;
+using System.Runtime.CompilerServices;
 
 namespace Controller.Controllers
 {
@@ -25,10 +26,33 @@ namespace Controller.Controllers
         }
 
         // GET: api/RiwayatPinjams
+        // Fitur searching juga diterapkan
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<RiwayatReadDto>>> GetRiwayatPinjams()
+        public async Task<ActionResult<IEnumerable<RiwayatReadDto>>> GetRiwayatPinjams([FromQuery] string? search, [FromQuery] string? status, [FromQuery] string? namaRuangan, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
-            var riwayat = await _context.RiwayatPinjams.ToListAsync();
+            var query = _context.RiwayatPinjams.Where(r => r.IsDeleted == false).Include(r => r.Ruangan).AsQueryable();
+
+            // Searching berdasarkan nama peminjam dan tujuan pinjam
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                query = query.Where(r => r.NamaPeminjam.Contains(search) || r.TujuanPinjam.Contains(search));
+            }
+
+            // Searching berdasarkan status
+            if (!string.IsNullOrWhiteSpace(status))
+            {
+                query = query.Where(r => r.Status == status);
+            }
+
+            // Searching berdasarkan idRuangan
+            if (!string.IsNullOrWhiteSpace(namaRuangan))
+            {
+                query = query.Where(r => r.Ruangan != null && r.Ruangan.NamaRuangan.Contains(namaRuangan));
+            }
+
+            // Untuk pagination agar list tidak terlalu panjang
+            var skipNumber = (page - 1) * pageSize;
+            var riwayat = await query.Skip(skipNumber).Take(pageSize).ToListAsync();
             return Ok(riwayat.Select(r => r.ResponseRiwayatReadDto()));
         }
 
@@ -128,6 +152,8 @@ namespace Controller.Controllers
             }
 
             var riwayat = dto.RequestRiwayatCreateDto();
+            riwayat.TrackingToken = Guid.NewGuid().ToString();
+
             _context.RiwayatPinjams.Add(riwayat);
             await _context.SaveChangesAsync();
 
