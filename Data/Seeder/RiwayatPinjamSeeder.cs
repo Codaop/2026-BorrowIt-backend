@@ -10,6 +10,7 @@ public static class RiwayatPinjamSeeder
             {
                 Id = 1,
                 IdRuangan = 2,
+                TrackingToken = Guid.NewGuid().ToString(),
                 NamaPeminjam = "Syauqy Arrayyan",
                 Email = "syauqy@it.student.pens.ac.id",
                 TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0),
@@ -20,6 +21,7 @@ public static class RiwayatPinjamSeeder
             {
                 Id = 2,
                 IdRuangan = 3,
+                TrackingToken = Guid.NewGuid().ToString(),
                 NamaPeminjam = "Nabila Azzahra",
                 Email = "nabila@it.student.pens.ac.id",
                 TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0),
@@ -30,6 +32,7 @@ public static class RiwayatPinjamSeeder
             {
                 Id = 3,
                 IdRuangan = 4,
+                TrackingToken = Guid.NewGuid().ToString(),
                 NamaPeminjam = "Yayan Maulana",
                 Email = "yayan@it.student.pens.ac.id",
                 TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0),

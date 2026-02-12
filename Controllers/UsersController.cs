@@ -9,6 +9,7 @@ using BorrowIt.Data;
 using BorrowIt.Models;
 using BorrowIt.Mappers.Users;
 using BorrowIt.Dtos.Users;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Controller.Controllers
 {
@@ -118,11 +119,50 @@ namespace Controller.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpPut("{id}/update-roles")]
+        public async Task<IActionResult> PutUserUpdateRoles(int id, UserUpdateRolesDto dto)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.RequestUserUpdateRolesDto(dto);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<UserCreateDto>> PostUser(UserCreateDto dto)
         {
+            var isUserDuplicate = await _context.Users.AnyAsync(u => u.Username == dto.Username || u.Email == dto.Email);
+
+            if (isUserDuplicate)
+            {
+                return BadRequest("Username atau email telah terdaftar dalam sistem.");
+            }
+
             var user = dto.RequestUserCreateDto();
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -131,6 +171,7 @@ namespace Controller.Controllers
         }
 
         // DELETE: api/Users/5
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {

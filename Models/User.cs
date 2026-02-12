@@ -7,6 +7,7 @@ public class User
 {
     [Key]
     public int Id { get; set; }
+    public string Roles { get; set; } = "User";
 
     [Required]
     [StringLength(50)]

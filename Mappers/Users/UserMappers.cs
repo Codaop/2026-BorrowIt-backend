@@ -4,6 +4,7 @@ using BorrowIt.Dtos.Users;
 using BorrowIt.Models;
 using BCrypt.Net;
 using Microsoft.CodeAnalysis.Elfie.Diagnostics;
+using System.Runtime.CompilerServices;
 
 public static class UserMappers
 {
@@ -12,6 +13,7 @@ public static class UserMappers
         return new UserReadDto
         {
             Id = userModels.Id,
+            Roles = userModels.Roles,
             Username = userModels.Username,
             Email = userModels.Email
         };
@@ -29,12 +31,17 @@ public static class UserMappers
 
     public static void RequestUserUpdateDto(this User user, UserUpdateDto dto)
     {
-        user.Username = dto.Username;
-        user.Email = dto.Email;
+        user.Username = !string.IsNullOrWhiteSpace(dto.Username) ? dto.Username : user.Username;
+        user.Email = !string.IsNullOrWhiteSpace(dto.Email) ? dto.Email : user.Email;
     }
 
     public static void RequestUserChangePasswordDto(this User user, UserChangePasswordDto dto)
     {
         user.PasswordHash = BCrypt.HashPassword(dto.NewPassword);
+    }
+
+    public static void RequestUserUpdateRolesDto(this User user, UserUpdateRolesDto dto)
+    {
+        user.Roles = !string.IsNullOrWhiteSpace(dto.Roles) ? dto.Roles : user.Roles;
     }
 }
