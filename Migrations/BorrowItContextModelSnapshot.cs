@@ -82,7 +82,7 @@ namespace Controller.Migrations
                             Status = "Pending",
                             TanggalKembali = new DateTime(2024, 7, 1, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrackingToken = "",
+                            TrackingToken = "49911852-590d-420d-a2c7-27c8b5c8d125",
                             TujuanPinjam = "Kegiatan welcome party anggota baru ENT 2026."
                         },
                         new
@@ -95,7 +95,7 @@ namespace Controller.Migrations
                             Status = "Pending",
                             TanggalKembali = new DateTime(2024, 7, 1, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrackingToken = "",
+                            TrackingToken = "a9b5eca9-e39f-420c-8b0f-0a192a693d1d",
                             TujuanPinjam = "Forum komunal mahasiswa teknik elektro."
                         },
                         new
@@ -108,7 +108,7 @@ namespace Controller.Migrations
                             Status = "Pending",
                             TanggalKembali = new DateTime(2024, 7, 1, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrackingToken = "",
+                            TrackingToken = "b91a2859-6cc2-4d91-8611-3dc9b26b78cb",
                             TujuanPinjam = "Rapat kerja kelompok praktikum Rangkaian Listrik."
                         });
                 });
@@ -146,7 +146,7 @@ namespace Controller.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 11, 15, 18, 46, 27, DateTimeKind.Utc).AddTicks(2120),
+                            CreatedAt = new DateTime(2026, 2, 12, 20, 21, 13, 869, DateTimeKind.Utc).AddTicks(8499),
                             IsTersedia = true,
                             JenisRuangan = "Laboratorium Praktek",
                             Kapasitas = 30,
@@ -155,7 +155,7 @@ namespace Controller.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 2, 11, 15, 18, 46, 27, DateTimeKind.Utc).AddTicks(3326),
+                            CreatedAt = new DateTime(2026, 2, 12, 20, 21, 13, 869, DateTimeKind.Utc).AddTicks(9514),
                             IsTersedia = true,
                             JenisRuangan = "Kelas Besar",
                             Kapasitas = 140,
@@ -164,7 +164,7 @@ namespace Controller.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 2, 11, 15, 18, 46, 27, DateTimeKind.Utc).AddTicks(3328),
+                            CreatedAt = new DateTime(2026, 2, 12, 20, 21, 13, 869, DateTimeKind.Utc).AddTicks(9516),
                             IsTersedia = true,
                             JenisRuangan = "Kelas Reguler",
                             Kapasitas = 40,
@@ -173,7 +173,7 @@ namespace Controller.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2026, 2, 11, 15, 18, 46, 27, DateTimeKind.Utc).AddTicks(3329),
+                            CreatedAt = new DateTime(2026, 2, 12, 20, 21, 13, 869, DateTimeKind.Utc).AddTicks(9517),
                             IsTersedia = true,
                             JenisRuangan = "Kelas Reguler",
                             Kapasitas = 60,
@@ -202,6 +202,10 @@ namespace Controller.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<string>("Roles")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -215,9 +219,10 @@ namespace Controller.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 11, 15, 18, 46, 28, DateTimeKind.Utc).AddTicks(5924),
+                            CreatedAt = new DateTime(2026, 2, 12, 20, 21, 13, 868, DateTimeKind.Utc).AddTicks(7819),
                             Email = "admin@example.com",
-                            PasswordHash = "$2a$11$nKo2QWmAU87WEKdtSCFdfO8R1a1N1jjWeCJI76P4SvmKXiYwDFvXa",
+                            PasswordHash = "AdminPasswordHash",
+                            Roles = "User",
                             Username = "Admin"
                         });
                 });

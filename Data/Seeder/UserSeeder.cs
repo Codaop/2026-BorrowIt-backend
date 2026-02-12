@@ -11,7 +11,7 @@ public static class UserSeeder
                 Id = 1,
                 Username = "Admin",
                 Email = "admin@example.com",
-                PasswordHash = "AdminPasswordHash"
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword("admin1234")
             }
         );
     }

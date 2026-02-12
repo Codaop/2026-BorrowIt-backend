@@ -15,9 +15,10 @@ public class BorrowItContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<RiwayatPinjam>().HasQueryFilter(r => !r.IsDeleted);
-        modelBuilder.SeedRuangan();
+        // Global query filter untuk soft delete
+        // modelBuilder.Entity<RiwayatPinjam>().HasQueryFilter(r => !r.IsDeleted);
         modelBuilder.SeedUser();
+        modelBuilder.SeedRuangan();
         modelBuilder.SeedRiwayat();
     }
 }

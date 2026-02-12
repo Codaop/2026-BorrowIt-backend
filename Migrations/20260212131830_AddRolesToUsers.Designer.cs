@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Controller.Migrations
 {
     [DbContext(typeof(BorrowItContext))]
-    [Migration("20260209161302_SeparatedSeeder")]
-    partial class SeparatedSeeder
+    [Migration("20260212131830_AddRolesToUsers")]
+    partial class AddRolesToUsers
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,52 +65,14 @@ namespace Controller.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime?>("WhenStatusChanged")
+                        .HasColumnType("datetime(6)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IdRuangan");
 
                     b.ToTable("RiwayatPinjams");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "syauqy@it.student.pens.ac.id",
-                            IdRuangan = 4,
-                            IsDeleted = false,
-                            NamaPeminjam = "Syauqy Arrayyan",
-                            Status = "Pending",
-                            TanggalKembali = new DateTime(2024, 7, 1, 11, 0, 0, 0, DateTimeKind.Unspecified),
-                            TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrackingToken = "",
-                            TujuanPinjam = "Kegiatan welcome party anggota baru ENT 2026."
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Email = "nabila@it.student.pens.ac.id",
-                            IdRuangan = 1,
-                            IsDeleted = false,
-                            NamaPeminjam = "Nabila Azzahra",
-                            Status = "Pending",
-                            TanggalKembali = new DateTime(2024, 7, 1, 11, 0, 0, 0, DateTimeKind.Unspecified),
-                            TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrackingToken = "",
-                            TujuanPinjam = "Forum komunal mahasiswa teknik elektro."
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Email = "yayan@it.student.pens.ac.id",
-                            IdRuangan = 3,
-                            IsDeleted = false,
-                            NamaPeminjam = "Yayan Maulana",
-                            Status = "Pending",
-                            TanggalKembali = new DateTime(2024, 7, 1, 11, 0, 0, 0, DateTimeKind.Unspecified),
-                            TanggalPinjam = new DateTime(2024, 7, 1, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            TrackingToken = "",
-                            TujuanPinjam = "Rapat kerja kelompok praktikum Rangkaian Listrik."
-                        });
                 });
 
             modelBuilder.Entity("BorrowIt.Models.Ruangan", b =>
@@ -141,44 +103,6 @@ namespace Controller.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ruangans");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 9, 16, 13, 1, 770, DateTimeKind.Utc).AddTicks(9988),
-                            IsTersedia = true,
-                            JenisRuangan = "Laboratorium Praktek",
-                            Kapasitas = 30,
-                            NamaRuangan = "B302"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2026, 2, 9, 16, 13, 1, 771, DateTimeKind.Utc).AddTicks(892),
-                            IsTersedia = true,
-                            JenisRuangan = "Kelas Besar",
-                            Kapasitas = 140,
-                            NamaRuangan = "SAW 10.08"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2026, 2, 9, 16, 13, 1, 771, DateTimeKind.Utc).AddTicks(893),
-                            IsTersedia = true,
-                            JenisRuangan = "Kelas Reguler",
-                            Kapasitas = 40,
-                            NamaRuangan = "A302"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2026, 2, 9, 16, 13, 1, 771, DateTimeKind.Utc).AddTicks(894),
-                            IsTersedia = true,
-                            JenisRuangan = "Kelas Reguler",
-                            Kapasitas = 60,
-                            NamaRuangan = "A303"
-                        });
                 });
 
             modelBuilder.Entity("BorrowIt.Models.User", b =>
@@ -202,6 +126,10 @@ namespace Controller.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<string>("Roles")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -210,16 +138,6 @@ namespace Controller.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2026, 2, 9, 16, 13, 1, 772, DateTimeKind.Utc).AddTicks(5081),
-                            Email = "admin@example.com",
-                            PasswordHash = "AdminPasswordHash",
-                            Username = "Admin"
-                        });
                 });
 
             modelBuilder.Entity("BorrowIt.Models.RiwayatPinjam", b =>
