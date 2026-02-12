@@ -24,6 +24,23 @@ public static class RiwayatPinjamsMappers
         };
     }
 
+    public static RiwayatCreateTokenDto ResponseTokenDto(this RiwayatPinjam riwayatPinjam)
+    {
+        return new RiwayatCreateTokenDto
+        {
+            Id = riwayatPinjam.Id,
+            IdRuangan = riwayatPinjam.IdRuangan,
+            NamaPeminjam = riwayatPinjam.NamaPeminjam,
+            Email = riwayatPinjam.Email,
+            TanggalPinjam = riwayatPinjam.TanggalPinjam.ToString("dd-MM-yyyy, HH:mm"),
+            TanggalKembali = riwayatPinjam.TanggalKembali.ToString("dd-MM-yyyy, HH:mm"),
+            TujuanPinjam = riwayatPinjam.TujuanPinjam,
+            Status = riwayatPinjam.Status,
+            WhenStatusChanged = riwayatPinjam.WhenStatusChanged?.ToString("dd-MM-yyyy, HH:mm") ?? "-",
+            TrackingToken = riwayatPinjam.TrackingToken
+        };
+    }
+
     public static RiwayatPinjam RequestRiwayatCreateDto(this RiwayatCreateDto dto)
     {
         return new RiwayatPinjam

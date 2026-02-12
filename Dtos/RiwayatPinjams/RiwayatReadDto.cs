@@ -12,3 +12,8 @@ public class RiwayatReadDto
     public string? Status { get; set; }
     public string? WhenStatusChanged { get; set; }
 }
+
+public class RiwayatCreateTokenDto : RiwayatReadDto
+{
+    public string TrackingToken { get; set; } = string.Empty;
+}
