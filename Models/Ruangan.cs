@@ -13,5 +13,5 @@ public class Ruangan
     public int Kapasitas { get; set; }
     public string? JenisRuangan { get; set; }
     public bool IsTersedia { get; set; } = true;
-    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow.AddHours(7);
 }

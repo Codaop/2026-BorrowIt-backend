@@ -20,7 +20,7 @@ public static class RiwayatPinjamsMappers
             TanggalKembali = riwayatPinjam.TanggalKembali.ToString("dd-MM-yyyy, HH:mm"),
             TujuanPinjam = riwayatPinjam.TujuanPinjam,
             Status = riwayatPinjam.Status,
-            WhenStatusChanged = riwayatPinjam.WhenStatusChanged?.ToString("dd-MM-yyyy, HH:mm")
+            WhenStatusChanged = riwayatPinjam.WhenStatusChanged?.ToString("dd-MM-yyyy, HH:mm") ?? "-"
         };
     }
 
