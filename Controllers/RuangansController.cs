@@ -9,11 +9,13 @@ using BorrowIt.Data;
 using BorrowIt.Models;
 using BorrowIt.Dtos.Ruangans;
 using BorrowIt.Mappers.Ruangans;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BorrowIt.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class RuangansController : ControllerBase
     {
         private readonly BorrowItContext _context;
@@ -24,6 +26,7 @@ namespace BorrowIt.Controllers
         }
 
         // GET: api/Ruangans
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RuanganReadDto>>> GetRuangans()
         {
@@ -32,6 +35,7 @@ namespace BorrowIt.Controllers
         }
 
         // GET: api/Ruangans/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<RuanganReadDto>> GetRuangan(int id)
         {

@@ -15,6 +15,7 @@ namespace Controller.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class UsersController : ControllerBase
     {
         private readonly BorrowItContext _context;
