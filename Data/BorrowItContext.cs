@@ -16,7 +16,7 @@ public class BorrowItContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         // Global query filter untuk soft delete
-        // modelBuilder.Entity<RiwayatPinjam>().HasQueryFilter(r => !r.IsDeleted);
+        modelBuilder.Entity<RiwayatPinjam>().HasQueryFilter(r => !r.IsDeleted);
         modelBuilder.SeedUser();
         modelBuilder.SeedRuangan();
         modelBuilder.SeedRiwayat();
