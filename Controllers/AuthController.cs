@@ -47,7 +47,7 @@ namespace Controller.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.Roles) // Role dari database (misal: "Admin")
+                new Claim(ClaimTypes.Role, user.Roles)
             };
 
             var token = new JwtSecurityToken(

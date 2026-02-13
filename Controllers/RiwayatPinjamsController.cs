@@ -30,7 +30,13 @@ namespace Controller.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RiwayatReadDto>>> GetRiwayatPinjams([FromQuery] string? search, [FromQuery] string? status, [FromQuery] string? namaRuangan, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
-            var query = _context.RiwayatPinjams.Where(r => r.IsDeleted == false).Include(r => r.Ruangan).AsQueryable();
+            var query = _context.RiwayatPinjams.Include(r => r.Ruangan).AsQueryable();
+
+            // Mengabaikan query filter untuk role Admin
+            if (User.IsInRole("Admin"))
+            {
+                query = query.IgnoreQueryFilters();
+            }
 
             // Searching berdasarkan nama peminjam dan tujuan pinjam
             if (!string.IsNullOrWhiteSpace(search))
@@ -44,7 +50,7 @@ namespace Controller.Controllers
                 query = query.Where(r => r.Status == status);
             }
 
-            // Searching berdasarkan idRuangan
+            // Searching berdasarkan nama ruangan
             if (!string.IsNullOrWhiteSpace(namaRuangan))
             {
                 query = query.Where(r => r.Ruangan != null && r.Ruangan.NamaRuangan.Contains(namaRuangan));
@@ -60,7 +66,15 @@ namespace Controller.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RiwayatReadDto>> GetRiwayatPinjam(int id)
         {
-            var riwayatPinjam = await _context.RiwayatPinjams.FindAsync(id);
+            var query = _context.RiwayatPinjams.AsQueryable();
+
+            // Mengabaikan query filter untuk role Admin
+            if (User.IsInRole("Admin"))
+            {
+                query = query.IgnoreQueryFilters();
+            }
+
+            var riwayatPinjam = await query.FirstOrDefaultAsync(r => r.Id == id);
 
             if (riwayatPinjam == null)
             {
@@ -177,7 +191,7 @@ namespace Controller.Controllers
 
             riwayatPinjam.IsDeleted = true;
             await _context.SaveChangesAsync();
-            
+
             return NoContent();
         }
 

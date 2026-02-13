@@ -36,14 +36,14 @@ namespace Controller.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<UserReadDto>> GetUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var users = await _context.Users.FindAsync(id);
 
-            if (user == null)
+            if (users == null)
             {
                 return NotFound();
             }
 
-            return Ok(user.ResponseUserReadDto());
+            return Ok(users.ResponseUserReadDto());
         }
 
         // PUT: api/Users/5
