@@ -36,7 +36,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("BorrowItPolicy", policy =>
     {
         // Izinkan URL Frontend React kamu
-        policy.WithOrigins("http://localhost:3000")
+        policy.WithOrigins("http://localhost:5173")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
