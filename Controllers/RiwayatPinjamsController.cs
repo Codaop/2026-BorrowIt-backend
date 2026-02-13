@@ -157,12 +157,12 @@ namespace Controller.Controllers
             _context.RiwayatPinjams.Add(riwayat);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRiwayatPinjam", new { id = riwayat.Id }, riwayat.ResponseRiwayatReadDto());
+            return CreatedAtAction("GetRiwayatPinjam", new { id = riwayat.Id }, riwayat.ResponseTokenDto());
         }
 
         // DELETE: api/RiwayatPinjams/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRiwayatPinjam(int id)
+        public async Task<IActionResult> DeleteRiwayatPinjam(int id, [FromQuery] string token)
         {
             var riwayatPinjam = await _context.RiwayatPinjams.FindAsync(id);
             if (riwayatPinjam == null)
@@ -170,9 +170,14 @@ namespace Controller.Controllers
                 return NotFound();
             }
 
-            riwayatPinjam.IsDeleted = true;
+            if (riwayatPinjam.TrackingToken != token)
+            {
+                return Unauthorized("Token tidak valid. Kamu tidak dapat menghapus data ini.");
+            }
 
+            riwayatPinjam.IsDeleted = true;
             await _context.SaveChangesAsync();
+            
             return NoContent();
         }
 
