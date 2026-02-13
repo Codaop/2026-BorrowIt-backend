@@ -87,13 +87,19 @@ namespace Controller.Controllers
         // PUT: api/RiwayatPinjams/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRiwayatPinjam(int id, RiwayatUpdateDto dto)
+        public async Task<IActionResult> PutRiwayatPinjam(int id, RiwayatUpdateDto dto, [FromQuery] string? token = null)
         {
             var existingRiwayat = await _context.RiwayatPinjams.FindAsync(id);
 
             if (existingRiwayat == null)
             {
                 return BadRequest("Riwayat tidak ditemukan.");
+            }
+
+            // Bypass token untuk admin
+            if (existingRiwayat.TrackingToken != token && !User.IsInRole("Admin"))
+            {
+                return Unauthorized("Token tidak valid. Kamu tidak dapat menghapus data ini.");
             }
 
             existingRiwayat.RequestRiwayatUpdateDto(dto);
@@ -176,15 +182,17 @@ namespace Controller.Controllers
 
         // DELETE: api/RiwayatPinjams/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRiwayatPinjam(int id, [FromQuery] string token)
+        public async Task<IActionResult> DeleteRiwayatPinjam(int id, [FromQuery] string? token = null)
         {
             var riwayatPinjam = await _context.RiwayatPinjams.FindAsync(id);
+
             if (riwayatPinjam == null)
             {
                 return NotFound();
             }
 
-            if (riwayatPinjam.TrackingToken != token)
+            // Bypass token untuk admin
+            if (riwayatPinjam.TrackingToken != token && !User.IsInRole("Admin"))
             {
                 return Unauthorized("Token tidak valid. Kamu tidak dapat menghapus data ini.");
             }
