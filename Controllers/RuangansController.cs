@@ -61,23 +61,7 @@ namespace BorrowIt.Controllers
                 return BadRequest();
             }
 
-            // Current value for NamaRuangan if not changed
-            if (!string.IsNullOrWhiteSpace(dto.NamaRuangan))
-            {
-                existingRuangan.NamaRuangan = dto.NamaRuangan;
-            }
-
-            // Current value for Kapasitas if not changed
-            if (dto.Kapasitas.HasValue)
-            {
-                existingRuangan.Kapasitas = dto.Kapasitas.Value;
-            }
-
-            // Current value for JenisRuangan if not changed
-            if (!string.IsNullOrWhiteSpace(dto.JenisRuangan))
-            {
-                existingRuangan.JenisRuangan = dto.JenisRuangan;
-            }
+            existingRuangan.RequestRuanganUpdateDto(dto);
 
             try
             {
