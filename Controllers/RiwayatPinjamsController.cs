@@ -87,7 +87,7 @@ namespace Controller.Controllers
         // PUT: api/RiwayatPinjams/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRiwayatPinjam(int id, RiwayatUpdateDto dto, [FromQuery] string? token = null)
+        public async Task<IActionResult> PutRiwayatPinjam(int id,[FromBody] RiwayatUpdateDto dto, [FromQuery] string? token = null)
         {
             var existingRiwayat = await _context.RiwayatPinjams.FindAsync(id);
 
