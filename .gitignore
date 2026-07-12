@@ -15,7 +15,6 @@ appsettings.Development.json
 appsettings.Local.json
 *.secrets.json
 .env
-.env.*
 
 ## --- [ Frontend (React/TypeScript) ] ---
 node_modules/
