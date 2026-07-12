@@ -70,16 +70,16 @@ Ikuti langkah berikut untuk menjalankan proyek di lingkungan lokal:
     2. Pastikan `.env` terdaftar di `.gitignore`.
     3. Isi variabel berikut:
     ``` ini
-    # Koneksi Database MySQL
-    ConnectionStrings__DefaultConnection="Server=localhost;Database=borrowit_db;User=root;Password=password_anda;"
+    # Koneksi Database
+    ConnectionStrings__DefaultConnection="server=localhost;port=3306;database=YOUR_DATABASE_NAME;user=YOUR_USERNAME;password=YOUR_PASSWORD;"
 
-    # Konfigurasi JWT (Stateless Authentication)
-    Jwt__Key="Kunci_Rahasia_Minimal_32_Karakter_Untuk_Enkripsi"
-    Jwt__Issuer="BorrowItBackend"
-    Jwt__Audience="BorrowItFrontend"
+    # Konfigurasi Keamanan JWT
+    Jwt__Key="YOUR_SECRET_KEY"
+    Jwt__Issuer="BorrowItApi"
+    Jwt__Audience="BorrowItClient"
 
-    # Konfigurasi CORS (Izin akses untuk React Frontend)
-    AllowedOrigins="http://localhost:3000"
+    # Konfigurasi CORS
+    AllowedOrigins="REACT_URL" # URL default Vite/React
     ```
 
 
