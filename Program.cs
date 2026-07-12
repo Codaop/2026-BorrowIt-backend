@@ -6,8 +6,21 @@ using BorrowIt.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var port = Environment.GetEnvironmentVariable("PORT");
+
+if (!string.IsNullOrEmpty(port))
+{
+    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+}
+
 // Configure database connection and register database context
-builder.Services.AddDbContext<BorrowItContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("BorrowItConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("BorrowItConnection"))));
+builder.Services.AddDbContext<BorrowItContext>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("BorrowItConnection"),
+        new MySqlServerVersion(new Version(8,0,0))
+    )
+);
+// builder.Services.AddDbContext<BorrowItContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("BorrowItConnection"), ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("BorrowItConnection"))));
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -36,7 +49,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("BorrowItPolicy", policy =>
     {
         // Izinkan URL Frontend React kamu
-        policy.WithOrigins("http://localhost:5173")
+        policy.AllowAnyOrigin()
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
@@ -54,7 +67,10 @@ var app = builder.Build();
 //     });
 // }
 
-app.UseHttpsRedirection();
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseCors("BorrowItPolicy");
 
